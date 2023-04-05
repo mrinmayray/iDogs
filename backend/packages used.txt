@@ -1,0 +1,8 @@
+express - 
+mongodb -
+mongoose - 
+express-validation -
+bcryptjs(encryption of password) -
+jwt(jason web tokan for authentication of the user) - npm i jsonwebtoken
+multer(upload image) - npm install --save multer
+fs (upload image)- npm i file-system

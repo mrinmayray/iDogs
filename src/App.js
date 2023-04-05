@@ -5,8 +5,20 @@ import Adopt from "./pages/adopt";
 import Products from "./pages/products";
 import Contact from "./pages/contact";
 import SignUp from "./pages/signup";
+//import { useState } from "react";
+//import Alert from "./components/Alert";
 
 function App() {
+  /*const [alert, setAlert] = useState(null);
+  const showAlert = (message, type)=>{
+    setAlert({
+      msg : message,
+      type : type
+    })
+    setTimeout(()=>{
+      setAlert(null);
+    }, 1500);
+  }*/
   return (
     <div className="App">
       <Routes>
