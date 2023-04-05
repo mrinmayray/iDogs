@@ -15,7 +15,7 @@ function Home() {
         title="Someone New In Life!"
         text="Find Your First Companion Here."
         buttontext="Find Now"
-        url="https://www.youtube.com/@ShoTVchannel"
+        url="/"
         btnclass="show"
       />
       <Destination />
