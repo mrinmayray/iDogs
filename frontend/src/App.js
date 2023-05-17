@@ -5,6 +5,7 @@ import Adopt from "./pages/adopt";
 import Products from "./pages/products";
 import Contact from "./pages/contact";
 import SignUp from "./pages/signup";
+import AdoptFrom from "./components/AdoptFrom";
 //import { useState } from "react";
 //import Alert from "./components/Alert";
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/adoptFrom" element={<AdoptFrom/>}/>
       </Routes>
     </div>
   );

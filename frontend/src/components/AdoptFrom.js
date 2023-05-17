@@ -1,0 +1,190 @@
+import React, { useState } from 'react'
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+import styled from "styled-components"
+import axios from "axios"
+import { useNavigate } from "react-router-dom"
+import { AdoptRegisterRoute } from '../utils/AllRoutes';
+import "./LogInFormStyles.css"
+function AdoptFrom() {
+    const [doggender, setGen] = useState("male");
+    const [dogname, setDogName] = useState();
+    const [dogbreed, setDogbreed] = useState();
+    const [dogage, setDogAge] = useState();
+    const [owner, setOwner] = useState();
+    const [contact, setContact] = useState();
+    const [dogpic, setdogPic] = useState();
+    const navigate = useNavigate();
+    const dogGenger = [
+        {
+            label: "Male",
+            value: "male",
+        },
+        {
+            label: "Female",
+            value: "female",
+        },
+    ]
+
+    const toastOption = {
+        position: "bottom-right",
+        autoClose: 8000,
+        pauseOnHover: true,
+        height: 10,
+        width: 10,
+        draggable: true,
+        theme: 'dark',
+    }
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+        console.log(doggender, dogname, dogbreed, dogage, owner, contact, dogpic);
+        const { data } = await axios.post(AdoptRegisterRoute, {
+            doggender,
+            dogname,
+            dogbreed,
+            dogage,
+            owner,
+            contact,
+            dogpic
+        });
+        if (data.status === false) {
+            toast.error(data.msg, toastOption)
+        }
+        if (data.status === true) {
+            localStorage.setItem('chat-app-user', JSON.stringify(data.user))
+            toast.success("Adopt listed Sucessfully", toastOption);
+            navigate("/adopt");
+        }
+    }
+
+
+    const postProfile = (pics) => {
+        if (pics === undefined) {
+            toast.warning("Please Select an Image", toastOption);
+            return;
+        }
+        console.log(pics);
+        if (pics.type === 'image/jpeg' || pics.type === 'image/png') {
+            const data = new FormData();
+            data.append("file", pics);
+            data.append("upload_preset", "chatapp");
+            data.append("cloud_name", "dvfxrdr5m");
+            fetch("https://api.cloudinary.com/v1_1/dvfxrdr5m/image/upload", {
+                method: "post",
+                body: data,
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    setdogPic(data.url.toString())
+                    toast.success("Succesfully Uploaded", toastOption)
+                    console.log(data.url.toString())
+                })
+                .catch((err) => {
+                    console.log(err)
+                });
+        } else {
+            toast.warning("Please Select an Image");
+            return;
+        }
+    }
+
+
+
+    return (
+        <>
+            <AdoptFromContainer>
+                <div className="login-main">
+                    <input
+                        type="checkbox"
+                        id="chk"
+                        className="login-input"
+                        aria-hidden="true"
+                    />
+                    <div className="signup">
+                        <form onSubmit={(event) => handleSubmit(event)}>
+                            <label htmlFor="chk" className="login-label" aria-hidden="true">
+                                Adopt Page
+                            </label>
+                            <input
+                                type="text"
+                                className="login-input"
+                                name="txt"
+                                placeholder="Dog Name"
+                                onChange={(e) => setDogName(e.target.value)}
+                                required
+                            />
+                            <input
+                                type="text"
+                                className="login-input"
+                                name="bread"
+                                placeholder="Enter Dog Breed"
+                                onChange={(e) => setDogbreed(e.target.value)}
+                                required
+                            />
+                            <select className='gender-input' onChange={(e) => setGen(e.target.value)}>
+                                {dogGenger.map((gender, i) => (
+                                    <option key={i} value={gender.value}>{gender.label}</option>
+                                ))}
+                            </select>
+                            <input
+                                type='number'
+                                name='dogage'
+                                className='login-input'
+                                placeholder='Dog Age in Months'
+                                onChange={(e) => setDogAge(e.target.value)}
+                            />
+                            <input
+                                type='text'
+                                name='dogOwner'
+                                className='login-input'
+                                placeholder='Owner Name'
+                                onChange={(e) => setOwner(e.target.value)}
+                            />
+                            <input
+                                type='number'
+                                name='ownerContact'
+                                className='login-input'
+                                placeholder='Contact Number'
+                                maxLength={10}
+                                minLength={10}
+                                onChange={(e) => setContact(e.target.value)}
+                            />
+                            <div className='dogProfile'>
+                                <input
+                                    type='file'
+                                    className='file'
+                                    id='file'
+                                    name={dogpic}
+                                    onChange={(e) => postProfile(e.target.files[0])}
+                                />
+                                <label htmlFor="file">
+                                    Upload Profile pic
+                                    <p className='file-name'>{dogpic}</p>
+                                </label>
+                            </div>
+
+                            <button type='submit' className="signup-button">Add Adopt</button>
+                        </form>
+                    </div>
+                </div>
+            </AdoptFromContainer>
+            <ToastContainer/>
+
+        </>
+    )
+}
+const AdoptFromContainer = styled.div`
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+`;
+
+export default AdoptFrom;
