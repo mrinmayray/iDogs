@@ -7,6 +7,10 @@ import Footer from "../components/Footer";
 import "../components/adoptList.css"
 import { AdoptListRoute} from "../utils/AllRoutes";
 import { useState, useEffect } from "react";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function Adopt() {
   const [adopts, setAdopts] = useState([])
   useEffect(() => {
@@ -88,6 +92,7 @@ function Adopt() {
 
       </div>
       <Footer />
+      <ToastContainer />
     </>
   );
 }

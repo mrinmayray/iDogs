@@ -3,6 +3,8 @@ import Hero from "../components/Hero";
 import contactimg from "../assets/Contact.jpg";
 import Footer from "../components/Footer";
 import ContactForm from "../components/ContactForm";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Contact() {
   return (
@@ -16,6 +18,7 @@ function Contact() {
       />
       <ContactForm />
       <Footer />
+      <ToastContainer />
     </>
   );
 }

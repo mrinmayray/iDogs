@@ -2,9 +2,17 @@ import React, { useState } from "react";
 import "./LogInFormStyles.css";
 import { useNavigate } from 'react-router-dom';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const LogInForm = () => {
   const [credentials, setCredentials] = useState({name: "", email:"", password:""});
   const navigate = useNavigate();
+
+  const invalid = () => toast("Invalid Credentials");
+  const loginsuccessful = () => toast("Logged in Successfully");
+  const signupfailed = () => toast("Signup Failed");
+  const signupsuccess = () => toast("Account Created Successfully, Please Log-In ");
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,8 +30,11 @@ const LogInForm = () => {
         // Save the auth token and redirect
         localStorage.setItem('token', json.authtoken)
         navigate('/');
+        loginsuccessful();
+        
+
     } else {
-      alert("Invalid Credentials")
+      invalid();
     }    
   };
   
@@ -42,9 +53,9 @@ const LogInForm = () => {
     if (json.success) {
         // Save the auth token and redirect
         localStorage.setItem('token', json.authtoken);
-        navigate('/');
+        signupsuccess();
     } else {
-      alert("Signup Failed")
+      signupfailed();
     }    
   };
   
