@@ -5,15 +5,11 @@ import Adopt from "./pages/adopt";
 import Products from "./pages/products";
 import Contact from "./pages/contact";
 import SignUp from "./pages/signup";
-<<<<<<< Updated upstream
-import AdoptFrom from "./components/AdoptFrom";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-=======
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import AdoptForm from "./components/AdoptForm";
 //import { useState } from "react";
 //import Alert from "./components/Alert";
->>>>>>> Stashed changes
 
 function App() {
   return (
@@ -26,7 +22,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/adoptForm" element={<AdoptForm />} />
       </Routes>
-    <ToastContainer />
+      <ToastContainer />
     </div>
   );
 }

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "./LogInUpFormStyles.css";
+import "./LogInFormStyles.css";
 import { useNavigate } from "react-router-dom";
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LogInForm = () => {
   const [credentials, setCredentials] = useState({
@@ -13,14 +13,12 @@ const LogInForm = () => {
   });
   const navigate = useNavigate();
 
-<<<<<<< Updated upstream
   const invalid = () => toast("Invalid Credentials");
   const loginsuccessful = () => toast("Logged in Successfully");
   const signupfailed = () => toast("Signup Failed");
-  const signupsuccess = () => toast("Account Created Successfully, Please Log-In ");
-  
-=======
->>>>>>> Stashed changes
+  const signupsuccess = () =>
+    toast("Account Created Successfully, Please Log-In ");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Log-in
@@ -37,24 +35,13 @@ const LogInForm = () => {
     const json = await response.json();
     console.log(json);
     if (json.success) {
-<<<<<<< Updated upstream
-        // Save the auth token and redirect
-        localStorage.setItem('token', json.authtoken)
-        navigate('/');
-        loginsuccessful();
-        
-
-    } else {
-      invalid();
-    }    
-=======
       // Save the auth token and redirect
       localStorage.setItem("token", json.authtoken);
       navigate("/");
+      loginsuccessful();
     } else {
-      alert("Invalid Credentials");
+      invalid();
     }
->>>>>>> Stashed changes
   };
 
   const handleSignup = async (e) => {
@@ -74,21 +61,12 @@ const LogInForm = () => {
     const json = await response.json();
     console.log(json);
     if (json.success) {
-<<<<<<< Updated upstream
-        // Save the auth token and redirect
-        localStorage.setItem('token', json.authtoken);
-        signupsuccess();
-    } else {
-      signupfailed();
-    }    
-=======
       // Save the auth token and redirect
       localStorage.setItem("token", json.authtoken);
-      navigate("/");
+      signupsuccess();
     } else {
-      alert("Signup Failed");
+      signupfailed();
     }
->>>>>>> Stashed changes
   };
 
   const onChange = (e) => {
@@ -170,5 +148,4 @@ const LogInForm = () => {
     </div>
   );
 };
-
 export default LogInForm;
