@@ -17,7 +17,7 @@ function Home() {
         title="Someone New In Life!"
         text="Find Your First Companion Here."
         buttontext="Find Now"
-        url="/"
+        url="/adopt"
         btnclass="show"
       />
       <Destination />
