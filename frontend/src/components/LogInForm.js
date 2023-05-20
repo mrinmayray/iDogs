@@ -1,32 +1,43 @@
 import React, { useState } from "react";
-import "./LogInFormStyles.css";
-import { useNavigate } from 'react-router-dom';
+import "./LogInUpFormStyles.css";
+import { useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const LogInForm = () => {
-  const [credentials, setCredentials] = useState({name: "", email:"", password:""});
+  const [credentials, setCredentials] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
   const navigate = useNavigate();
 
+<<<<<<< Updated upstream
   const invalid = () => toast("Invalid Credentials");
   const loginsuccessful = () => toast("Logged in Successfully");
   const signupfailed = () => toast("Signup Failed");
   const signupsuccess = () => toast("Account Created Successfully, Please Log-In ");
   
+=======
+>>>>>>> Stashed changes
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Log-in
     const response = await fetch("http://localhost:5000/api/auth/login", {
       method: `POST`,
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({email: credentials.email, password: credentials.password})
+      body: JSON.stringify({
+        email: credentials.email,
+        password: credentials.password,
+      }),
     });
-    const json = await response.json()
+    const json = await response.json();
     console.log(json);
     if (json.success) {
+<<<<<<< Updated upstream
         // Save the auth token and redirect
         localStorage.setItem('token', json.authtoken)
         navigate('/');
@@ -36,33 +47,54 @@ const LogInForm = () => {
     } else {
       invalid();
     }    
+=======
+      // Save the auth token and redirect
+      localStorage.setItem("token", json.authtoken);
+      navigate("/");
+    } else {
+      alert("Invalid Credentials");
+    }
+>>>>>>> Stashed changes
   };
-  
+
   const handleSignup = async (e) => {
     e.preventDefault();
     // Sign-Up
     const response = await fetch("http://localhost:5000/api/auth/createuser", {
       method: `POST`,
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({name: credentials.name, email: credentials.email, password: credentials.password})
+      body: JSON.stringify({
+        name: credentials.name,
+        email: credentials.email,
+        password: credentials.password,
+      }),
     });
     const json = await response.json();
     console.log(json);
     if (json.success) {
+<<<<<<< Updated upstream
         // Save the auth token and redirect
         localStorage.setItem('token', json.authtoken);
         signupsuccess();
     } else {
       signupfailed();
     }    
+=======
+      // Save the auth token and redirect
+      localStorage.setItem("token", json.authtoken);
+      navigate("/");
+    } else {
+      alert("Signup Failed");
+    }
+>>>>>>> Stashed changes
   };
-  
+
   const onChange = (e) => {
-    setCredentials({...credentials, [e.target.name]: e.target.value})
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
-  
+
   return (
     <div className="login-body">
       <div className="login-main">

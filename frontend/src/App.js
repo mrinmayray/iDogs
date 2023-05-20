@@ -5,21 +5,17 @@ import Adopt from "./pages/adopt";
 import Products from "./pages/products";
 import Contact from "./pages/contact";
 import SignUp from "./pages/signup";
+<<<<<<< Updated upstream
 import AdoptFrom from "./components/AdoptFrom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+=======
+import AdoptForm from "./components/AdoptForm";
 //import { useState } from "react";
 //import Alert from "./components/Alert";
+>>>>>>> Stashed changes
 
 function App() {
-  /*const [alert, setAlert] = useState(null);
-  const showAlert = (message, type)=>{
-    setAlert({
-      msg : message,
-      type : type
-    })
-    setTimeout(()=>{
-      setAlert(null);
-    }, 1500);
-  }*/
   return (
     <div className="App">
       <Routes>
@@ -28,8 +24,9 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/adoptFrom" element={<AdoptFrom/>}/>
+        <Route path="/adoptForm" element={<AdoptForm />} />
       </Routes>
+    <ToastContainer />
     </div>
   );
 }
