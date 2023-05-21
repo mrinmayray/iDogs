@@ -90,21 +90,21 @@ function AdoptForm() {
   return (
     <>
       <AdoptFromContainer>
-        <div className="login-main">
+        <div className="body">
           <input
             type="checkbox"
             id="chk"
-            className="login-input"
+            className="login-input1"
             aria-hidden="true"
           />
-          <div className="signup">
+          <div className="signup1">
             <form onSubmit={(event) => handleSubmit(event)}>
-              <label htmlFor="chk" className="login-label" aria-hidden="true">
+              <label htmlFor="chk" className="login-label1" aria-hidden="true">
                 Adopt Page
               </label>
               <input
                 type="text"
-                className="login-input"
+                className="login-input1"
                 name="txt"
                 placeholder="Dog Name"
                 onChange={(e) => setDogName(e.target.value)}
@@ -112,7 +112,7 @@ function AdoptForm() {
               />
               <input
                 type="text"
-                className="login-input"
+                className="login-input1"
                 name="bread"
                 placeholder="Enter Dog Breed"
                 onChange={(e) => setDogbreed(e.target.value)}
@@ -131,21 +131,21 @@ function AdoptForm() {
               <input
                 type="number"
                 name="dogage"
-                className="login-input"
+                className="login-input1"
                 placeholder="Dog Age in Months"
                 onChange={(e) => setDogAge(e.target.value)}
               />
               <input
                 type="text"
                 name="dogOwner"
-                className="login-input"
+                className="login-input1"
                 placeholder="Owner Name"
                 onChange={(e) => setOwner(e.target.value)}
               />
               <input
                 type="number"
                 name="ownerContact"
-                className="login-input"
+                className="login-input1"
                 placeholder="Contact Number"
                 maxLength={10}
                 minLength={10}
@@ -165,7 +165,7 @@ function AdoptForm() {
                 </label>
               </div>
 
-              <button type="submit" className="signup-button">
+              <button type="submit" className="signup1-button">
                 Add Adopt
               </button>
             </form>
