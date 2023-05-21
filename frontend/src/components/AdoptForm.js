@@ -6,6 +6,11 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AdoptRegisterRoute } from "../utils/AllRoutes";
 import "./AdoptFormStyles.css";
+import Navbar from "./Navbar";
+import Hero from "../components/Hero";
+import addpetimg from "../assets/AddPet.jpg";
+import Footer from "./Footer";
+
 function AdoptForm() {
   const [doggender, setGen] = useState("male");
   const [dogname, setDogName] = useState();
@@ -89,6 +94,8 @@ function AdoptForm() {
 
   return (
     <>
+      <Navbar />
+      <Hero cname="hero" heroimg={addpetimg} btnclass="hide" />
       <AdoptFromContainer>
         <div className="body">
           <input
@@ -100,7 +107,7 @@ function AdoptForm() {
           <div className="signup1">
             <form onSubmit={(event) => handleSubmit(event)}>
               <label htmlFor="chk" className="login-label1" aria-hidden="true">
-                Adopt Page
+                Adopt Form
               </label>
               <input
                 type="text"
@@ -157,21 +164,23 @@ function AdoptForm() {
                   className="file"
                   id="file"
                   name={dogpic}
+                  placeholder="Contact Number"
                   onChange={(e) => postProfile(e.target.files[0])}
                 />
                 <label htmlFor="file">
-                  Upload Profile pic
+                  {/* Upload Profile pic */}
                   <p className="file-name">{dogpic}</p>
                 </label>
               </div>
 
               <button type="submit" className="signup1-button">
-                Add Adopt
+                Add Pet
               </button>
             </form>
           </div>
         </div>
       </AdoptFromContainer>
+      <Footer />
       <ToastContainer />
     </>
   );

@@ -47,10 +47,10 @@ function Adopt() {
       <Hero
         cname="hero"
         heroimg={adoptimg}
-        title="Someone New In Life!"
-        text="Find Your First Companion Here."
+        title="Log In To Add Pet!"
+        text="Add Pet For Adoption Here."
         buttontext="Add Pet"
-        url="/adoptForm"
+        url="/AdoptForm"
         btnclass={isLoggedIn ? "show" : "hide"}
         onClick={handleAddPet}
       />

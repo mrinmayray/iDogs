@@ -16,7 +16,8 @@ const LogInForm = () => {
   const invalid = () => toast("Invalid Credentials");
   const loginsuccessful = () => toast("Logged in Successfully");
   const signupfailed = () => toast("Signup Failed");
-  const signupsuccess = () => toast("Account Created Successfully, Please Log-In");
+  const signupsuccess = () =>
+    toast("Account Created Successfully, Please Log-In");
   const logoutSuccessful = () => toast("Logged out Successfully");
 
   useEffect(() => {
@@ -140,11 +141,6 @@ const LogInForm = () => {
           // Show Log-Out button if logged in
           <div className="logout">
             <div className="logout-h">
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
               <h2>You are already Logged-In</h2>
             </div>
             <button className="logout-button" onClick={handleLogout}>

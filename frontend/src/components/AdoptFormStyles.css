@@ -1,6 +1,6 @@
 .body {
-  width: 350px;
-  height: 500px;
+  width: 400px;
+  height: 625px;
   position: relative;
   background-color: #fff;
   overflow: hidden;
@@ -20,13 +20,27 @@
 }
 .login-label1 {
   color: #01959a;
-  font-size: 2.3em;
+  font-size: 2.5em;
   justify-content: center;
   display: flex;
-  margin: 60px;
+  margin: 50px;
   font-weight: bold;
   cursor: pointer;
   transition: 0.5s ease-in-out;
+}
+
+.gender-input {
+  width: 30%;
+  height: 30px;
+  background: #e7e7e7;
+  justify-content: center;
+  display: flex;
+  margin: 20px auto;
+  padding-left: 5px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .login-input1 {
@@ -40,6 +54,20 @@
   border: none;
   outline: none;
   border-radius: 5px;
+}
+
+.dogProfile {
+  width: 60%;
+  height: 30px;
+  background: #e7e7e7;
+  justify-content: center;
+  display: flex;
+  margin: 20px auto;
+  padding-left: 5px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .signup-button {
@@ -62,17 +90,5 @@
 
 .login .login-label1 {
   color: #fff;
-  transform: scale(0.6);
-}
-
-#chk:checked ~ .login {
-  transform: translateY(-500px);
-}
-
-#chk:checked ~ .login .login-label1 {
-  transform: scale(1);
-}
-
-#chk:checked ~ .signup1 .login-label1 {
   transform: scale(0.6);
 }
