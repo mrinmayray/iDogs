@@ -33,7 +33,7 @@ class Navbar extends Component {
             );
           })}
           <Link to="/signup">
-            <button>User</button>
+            <button><i class="fa-solid fa-user"></i></button>
           </Link>
         </ul>
       </nav>
