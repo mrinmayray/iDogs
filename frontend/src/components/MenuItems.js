@@ -21,12 +21,12 @@ export const MenuItems = [
     title: "Contact",
     url: "/contact",
     cname: "nav-links",
-    icon: "fa-solid fa-address-book",
+    icon: "fa-solid fa-envelope-circle-check",
   },
   {
     // title: "User",
     url: "/signup",
     cname: "nav-links-mobile",
-    icon:"fa-solid fa-user",
+    icon: "fa-solid fa-user",
   },
 ];
