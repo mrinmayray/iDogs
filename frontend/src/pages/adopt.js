@@ -1,18 +1,19 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
-import "../components/HeroStyles.css";
-import axios from "axios";
-import adoptimg from "../assets/Adopt.jpg";
 import Footer from "../components/Footer";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import adoptimg from "../assets/Adopt.jpg";
+import "../components/HeroStyles.css";
 import "../components/adoptList.css";
 import { AdoptListRoute } from "../utils/AllRoutes";
-import { useState, useEffect } from "react";
-
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 function Adopt() {
   const [adopts, setAdopts] = useState([]);
+  const isLoggedIn = !!localStorage.getItem("token");
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -25,6 +26,21 @@ function Adopt() {
     }
     fetchData();
   }, []);
+
+  const handleAddPet = () => {
+    if (!isLoggedIn) {
+      toast.error("Please log in to add a pet.", {
+        position: "bottom-right",
+        autoClose: 5000,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+      });
+    } else {
+      // Handle add pet logic here
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -35,7 +51,8 @@ function Adopt() {
         text="Find Your First Companion Here."
         buttontext="Add Pet"
         url="/adoptForm"
-        btnclass="show"
+        btnclass={isLoggedIn ? "show" : "hide"}
+        onClick={handleAddPet}
       />
       <div className="shell">
         <div className="container">
