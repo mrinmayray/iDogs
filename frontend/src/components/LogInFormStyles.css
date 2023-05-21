@@ -127,3 +127,7 @@
 #chk:checked ~ .signup .login-label {
   transform: scale(0.6);
 }
+
+.logout-button {
+  top: 30px;
+}

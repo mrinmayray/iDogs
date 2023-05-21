@@ -16,8 +16,8 @@ const LogInForm = () => {
   const invalid = () => toast("Invalid Credentials");
   const loginsuccessful = () => toast("Logged in Successfully");
   const signupfailed = () => toast("Signup Failed");
-  const signupsuccess = () =>
-    toast("Account Created Successfully, Please Log-In");
+  const signupsuccess = () => toast("Account Created Successfully, Please Log-In");
+  const logoutSuccessful = () => toast("Logged out Successfully");
 
   useEffect(() => {
     // Check if the user is already logged in
@@ -87,6 +87,7 @@ const LogInForm = () => {
     // Clear auth token and update logged-in status
     localStorage.removeItem("token");
     setIsLoggedIn(false);
+    logoutSuccessful();
   };
 
   return (
@@ -138,6 +139,14 @@ const LogInForm = () => {
         ) : (
           // Show Log-Out button if logged in
           <div className="logout">
+            <div className="logout-h">
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <h2>You are already Logged-In</h2>
+            </div>
             <button className="logout-button" onClick={handleLogout}>
               Log Out
             </button>
@@ -172,6 +181,7 @@ const LogInForm = () => {
           </div>
         ) : null}
       </div>
+      <ToastContainer />
     </div>
   );
 };
