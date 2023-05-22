@@ -14,7 +14,6 @@ function SignUp() {
       <Hero cname="hero" heroimg={signupimg} btnclass="hide" />
       <LogInForm />
       <Footer />
-      <ToastContainer />
     </>
   );
 }

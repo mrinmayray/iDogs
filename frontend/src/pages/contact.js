@@ -18,7 +18,6 @@ function Contact() {
       />
       <ContactForm />
       <Footer />
-      <ToastContainer />
     </>
   );
 }

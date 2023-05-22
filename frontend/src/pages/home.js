@@ -23,7 +23,6 @@ function Home() {
       <Destination />
       <Trip />
       <Footer />
-      <ToastContainer />
     </>
   );
 }

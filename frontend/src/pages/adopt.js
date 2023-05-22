@@ -116,7 +116,6 @@ function Adopt() {
         </div>
       </div>
       <Footer />
-      <ToastContainer />
     </>
   );
 }

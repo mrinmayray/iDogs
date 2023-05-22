@@ -13,13 +13,6 @@ const LogInForm = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  const invalid = () => toast("Invalid Credentials");
-  const loginsuccessful = () => toast("Logged in Successfully");
-  const signupfailed = () => toast("Signup Failed");
-  const signupsuccess = () =>
-    toast("Account Created Successfully, Please Log-In");
-  const logoutSuccessful = () => toast("Logged out Successfully");
-
   useEffect(() => {
     // Check if the user is already logged in
     const token = localStorage.getItem("token");
@@ -48,9 +41,9 @@ const LogInForm = () => {
       localStorage.setItem("token", json.authtoken);
       setIsLoggedIn(true);
       navigate("/");
-      loginsuccessful();
+      toast.success("Logged in Successfully");
     } else {
-      invalid();
+      toast.error("Invalid Credentials");
     }
   };
 
@@ -74,9 +67,9 @@ const LogInForm = () => {
       // Save the auth token and update logged-in status
       localStorage.setItem("token", json.authtoken);
       setIsLoggedIn(true);
-      signupsuccess();
+      toast.success("Account Created Successfully, Please Log-In");
     } else {
-      signupfailed();
+      toast.error("Signup Failed");
     }
   };
 
@@ -88,7 +81,7 @@ const LogInForm = () => {
     // Clear auth token and update logged-in status
     localStorage.removeItem("token");
     setIsLoggedIn(false);
-    logoutSuccessful();
+    toast.success("Logged out Successfully");
   };
 
   return (
@@ -177,7 +170,6 @@ const LogInForm = () => {
           </div>
         ) : null}
       </div>
-      <ToastContainer />
     </div>
   );
 };

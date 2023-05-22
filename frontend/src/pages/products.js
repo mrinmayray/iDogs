@@ -16,7 +16,6 @@ function Products() {
         btnclass="hide"
       />
       <Footer />
-      <ToastContainer/>
     </>
   );
 }
