@@ -92,3 +92,9 @@
   color: #fff;
   transform: scale(0.6);
 }
+
+@media screen and (max-width: 1366px) {
+  .body {
+    margin-top: 20%;
+  }
+}

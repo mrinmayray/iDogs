@@ -139,3 +139,9 @@
 .logout-button {
   top: 30px;
 }
+
+@media screen and (max-width: 1366px) {
+  .login-main {
+    margin-top: 20%;
+  }
+}
