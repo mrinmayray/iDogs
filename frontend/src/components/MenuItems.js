@@ -12,10 +12,10 @@ export const MenuItems = [
     icon: "fa-solid fa-paw",
   },
   {
-    title: "Products",
+    title: "Discover",
     url: "/products",
     cname: "nav-links",
-    icon: "fa-solid fa-bag-shopping",
+    icon: "fa-solid fa-lightbulb",
   },
   {
     title: "Contact",
@@ -24,7 +24,6 @@ export const MenuItems = [
     icon: "fa-solid fa-envelope-circle-check",
   },
   {
-    // title: "User",
     url: "/signup",
     cname: "nav-links-mobile",
     icon: "fa-solid fa-user",

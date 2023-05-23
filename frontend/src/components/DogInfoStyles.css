@@ -1,52 +1,94 @@
 .DogInfo-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  position: absolute;
+}
+
+.dog_input {
+  position: absolute;
+  padding: 10px 25px;
+  margin-top: -11.5%;
+  margin-left: -7%;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.dog_button {
+  position: absolute;
+  margin-top: 495px;
+  margin-left: -3.5%;
+  padding: 10px 25px;
+  background-color: #fca311;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.dog_h1 {
+  margin-top: 20px;
+  font-size: 3em;
+  text-align: center;
+}
+
+.dog-imgbox {
+  width: 800px;
+  height: 600px;
+  margin-top: 25px;
+  margin-left: 5%;
+  border: #fff;
+  box-shadow: 0 5px 25px 2px rgba(0, 0, 0, 0.11);
+  border-radius: 20px;
+  object-fit: cover;
+  padding: 0.8rem;
+  cursor: pointer;
+}
+
+.dog-image {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 15px;
+}
+.dog-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  transition: 0.3s ease-in-out;
+}
+
+.dog-image:hover img {
+  transform: scale(1.1);
+}
+
+.fact-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.fact-item {
+  margin-bottom: 10px;
+}
+
+.fact-item strong {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 1366px) {
+  .dog_input {
+    position: absolute;
+    margin-top: -10%;
+    margin-left: -8%;
   }
-  
-  input[type="text"] {
-    padding: 10px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+
+  .dog_button {
+    position: absolute;
+    margin-top: 360px;
+    margin-left: -3.5%;
   }
-  
-  .button1 {
-    padding: 10px 20px;
-    background-color: #fca311;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  h1 {
-    margin-top: 20px;
-    font-size: 24px;
-    text-align: center;
-  }
-  
-  .dog-image {
-    width: 200px;
-    height: 200px;
-    margin-top: 20px;
-    object-fit: cover;
-  }
-  
-  .fact-list {
-    list-style-type: none;
-    padding: 0;
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .fact-item {
-    margin-bottom: 10px;
-  }
-  
-  .fact-item strong {
-    font-weight: bold;
-  }
-  
-  
+}

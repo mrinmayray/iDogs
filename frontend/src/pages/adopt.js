@@ -45,7 +45,7 @@ function Adopt() {
     <>
       <Navbar />
       <Hero
-        cname="hero"
+        cname="hero-mid"
         heroimg={adoptimg}
         title="Log In To Add Pet!"
         text="Add Pet For Adoption Here."
