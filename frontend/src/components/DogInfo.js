@@ -6,7 +6,8 @@ import "./DogInfoStyles.css";
 
 function DogInfo() {
   const [dogBreed, setDogBreed] = useState("");
-  const [dogFact, setDogFact] = useState("");
+  const [dogFact, setDogFact] = useState([]);
+  const [fetchCompleted, setFetchCompleted] = useState(false);
 
   const fetchData = async () => {
     const options = {
@@ -24,10 +25,12 @@ function DogInfo() {
     try {
       const response = await axios.request(options);
       setDogFact(response.data);
+      setFetchCompleted(true);
       console.log(response.data);
     } catch (error) {
       console.error(error);
       toast.error("Error fetching dog fact.");
+      setFetchCompleted(true);
     }
   };
 
@@ -44,7 +47,10 @@ function DogInfo() {
         <button className="dog_button" onClick={fetchData}>
           Get Info
         </button>
-        {dogFact && (
+        {fetchCompleted && dogFact.length === 0 && (
+          <div>No results found for the specified dog breed.</div>
+        )}
+        {fetchCompleted && dogFact.length > 0 && (
           <div>
             <h1 className="dog_h1">{dogFact[0].name}</h1>
             {dogFact.map((fact, index) => (
