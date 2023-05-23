@@ -52,7 +52,6 @@ function DogInfo() {
         )}
         {fetchCompleted && dogFact.length > 0 && (
           <div>
-            <h1 className="dog_h1">{dogFact[0].name}</h1>
             {dogFact.map((fact, index) => (
               <div key={index}>
                 {fact.image_link && (
@@ -63,17 +62,19 @@ function DogInfo() {
                   </div>
                 )}
                 <ul>
+                  <li className="fact-item">
+                    <strong>{formatKey("name")}:</strong> {fact.name}
+                  </li>
                   {Object.entries(fact).map(([key, value]) => {
-                    if (key === "image_link") return null; // Skip rendering image_link
+                    if (key === "image_link" || key === "name" || key === "min_life_expectancy" || key === "max_height_male" || key === "max_height_female" || key === "max_weight_male" || key === "max_weight_female" || key === "min_height_male" || key === "min_weight_male" || key === "min_weight_female" || key === "min_height_female") return null; // Skip rendering excluded keys
                     return (
                       <li key={key} className="fact-item">
                         <strong>{formatKey(key)}:</strong>{" "}
-                        {typeof value === "object"
-                          ? JSON.stringify(value)
-                          : value}
+                        {typeof value === "object" ? JSON.stringify(value) : value}
                       </li>
                     );
                   })}
+
                 </ul>
               </div>
             ))}
@@ -111,31 +112,14 @@ function formatKey(key) {
       return "Energy";
     case "barking":
       return "Barking";
-    case "min_life_expectancy":
-      return "Min Life Expectancy";
     case "max_life_expectancy":
       return "Max Life Expectancy";
-    case "max_height_male":
-      return "Max Height (Male)";
-    case "max_height_female":
-      return "Max Height (Female)";
-    case "max_weight_male":
-      return "Max Weight (Male)";
-    case "max_weight_female":
-      return "Max Weight (Female)";
-    case "min_height_male":
-      return "Min Height (Male)";
-    case "min_height_female":
-      return "Min Height (Female)";
-    case "min_weight_male":
-      return "Min Weight (Male)";
-    case "min_weight_female":
-      return "Min Weight (Female)";
     case "name":
       return "Name";
     default:
-      return key;
+      return null; // Skip rendering the excluded keys
   }
 }
+
 
 export default DogInfo;
