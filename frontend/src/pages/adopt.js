@@ -47,7 +47,7 @@ function Adopt() {
       <Hero
         cname="hero-mid"
         heroimg={adoptimg}
-        title={isLoggedIn ? "Click on the button to add a pet" : "Log In To Add Pet!"}
+        title={isLoggedIn ? "Click On The Button Below!" : "Log In To Add Pet!"}
         text="Add Pet For Adoption Here."
         buttontext="Add Pet"
         url="/AdoptForm"
@@ -66,7 +66,7 @@ function Adopt() {
                       <img
                         key={i}
                         src={adopt.dogpic}
-                        alt="Product"
+                        alt="Discover"
                         className="img-responsive"
                       />
                     </div>

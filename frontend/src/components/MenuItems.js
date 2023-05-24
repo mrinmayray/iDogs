@@ -13,7 +13,7 @@ export const MenuItems = [
   },
   {
     title: "Discover",
-    url: "/products",
+    url: "/discover",
     cname: "nav-links",
     icon: "fa-solid fa-lightbulb",
   },

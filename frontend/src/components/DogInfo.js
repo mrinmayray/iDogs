@@ -37,21 +37,28 @@ function DogInfo() {
   return (
     <>
       <div>
-        <input
-          className="dog_input"
-          type="text"
-          placeholder="Enter dog breed"
-          value={dogBreed}
-          onChange={(e) => setDogBreed(e.target.value)}
-        />
-        <button className="dog_button" onClick={fetchData}>
-          Get Info
-        </button>
+        <div className="dog_box">
+          <input
+            className="dog_input"
+            type="text"
+            placeholder="Enter Dog Breed"
+            value={dogBreed}
+            onChange={(e) => setDogBreed(e.target.value)}
+          />
+          <button className="dog_button" onClick={fetchData}>
+            Get Info
+          </button>
+        </div>
         {fetchCompleted && dogFact.length === 0 && (
-          <div>No results found for the specified dog breed.</div>
+          <div className="not-found">
+            No Results Found!
+            <div className="sad">
+              <i class="fa-regular fa-face-frown"></i>
+            </div>
+          </div>
         )}
         {fetchCompleted && dogFact.length > 0 && (
-          <div>
+          <div className="dog-box">
             {dogFact.map((fact, index) => (
               <div key={index}>
                 {fact.image_link && (
@@ -62,19 +69,36 @@ function DogInfo() {
                   </div>
                 )}
                 <ul>
-                  <li className="fact-item">
-                    <strong>{formatKey("name")}:</strong> {fact.name}
-                  </li>
+                  <li className="fact-list">{fact.name}</li>
                   {Object.entries(fact).map(([key, value]) => {
-                    if (key === "image_link" || key === "name" || key === "min_life_expectancy" || key === "max_height_male" || key === "max_height_female" || key === "max_weight_male" || key === "max_weight_female" || key === "min_height_male" || key === "min_weight_male" || key === "min_weight_female" || key === "min_height_female") return null; // Skip rendering excluded keys
+                    if (
+                      key === "image_link" ||
+                      key === "name" ||
+                      key === "min_life_expectancy" ||
+                      key === "max_height_male" ||
+                      key === "max_height_female" ||
+                      key === "max_weight_male" ||
+                      key === "max_weight_female" ||
+                      key === "min_height_male" ||
+                      key === "min_weight_male" ||
+                      key === "min_weight_female" ||
+                      key === "min_height_female"
+                    )
+                      return null; // Skip rendering excluded keys
                     return (
                       <li key={key} className="fact-item">
                         <strong>{formatKey(key)}:</strong>{" "}
-                        {typeof value === "object" ? JSON.stringify(value) : value}
+                        {typeof value === "object"
+                          ? JSON.stringify(value)
+                          : value}
+                        {key === "max_life_expectancy" && " Years"}
+                        {renderIcon(key)}
                       </li>
                     );
                   })}
-
+                  <div className="end">
+                    These Rating Are Out of 5 <i className="fas fa-star"></i>
+                  </div>
                 </ul>
               </div>
             ))}
@@ -121,5 +145,30 @@ function formatKey(key) {
   }
 }
 
+// Helper function to render icons
+function renderIcon(key) {
+  switch (key) {
+    case "good_with_children":
+    case "good_with_other_dogs":
+    case "shedding":
+    case "grooming":
+    case "drooling":
+    case "coat_length":
+    case "good_with_strangers":
+    case "playfulness":
+    case "protectiveness":
+    case "trainability":
+    case "energy":
+    case "barking":
+      return (
+        <>
+          {" "}
+          <i className="fas fa-star" style={{ color: "#ffcc00" }}></i>
+        </>
+      );
+    default:
+      return null;
+  }
+}
 
 export default DogInfo;

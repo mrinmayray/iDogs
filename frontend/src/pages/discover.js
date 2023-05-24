@@ -1,18 +1,18 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
-import productsimg from "../assets/Products.jpg";
+import discoverimg from "../assets/Discover.jpg";
 import Footer from "../components/Footer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DogInfo from "../components/DogInfo";
 
-function Products() {
+function Discover() {
   return (
     <>
       <Navbar />
       <Hero
         cname="hero-mid"
-        heroimg={productsimg}
+        heroimg={discoverimg}
         title="Things To Know!"
         text="Everything You Need To Know About Your Pet."
         btnclass="hide"
@@ -23,4 +23,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default Discover;

@@ -2,7 +2,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/home";
 import Adopt from "./pages/adopt";
-import Products from "./pages/products";
+import Discover from "./pages/discover";
 import Contact from "./pages/contact";
 import SignUp from "./pages/signup";
 import { ToastContainer, toast } from "react-toastify";
@@ -17,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/adopt" element={<Adopt />} />
-        <Route path="/products" element={<Products />} />
+        <Route path="/discover" element={<Discover />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/adoptForm" element={<AdoptForm />} />
