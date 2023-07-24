@@ -17,19 +17,3 @@ const ConnectToMongo = () => {
 
 
 module.exports = ConnectToMongo;
-
-/*
-const mongoose = require("mongoose");
-
-const dbUrl = "mongodb+srv://mrinmay:root@cluster0.wa1agyu.mongodb.net/PetAdoption?retryWrites=true&w=majority";
-
-const connectionParams = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-};
-
-mongoose.connect(dbUrl, connectionParams).then(() => {
-    console.info("Connected To Mongo Successfully");
-}).catch((e) => {
-    console.log("Error:", e);
-});*/
