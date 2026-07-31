@@ -1,6 +1,6 @@
-const { default: mongoose } = require('mongoose');
-const mogoose = require('mongoose');
-const mongoURL = "mongodb+srv://mrinmay:root@cluster0.wa1agyu.mongodb.net/PetAdoption?retryWrites=true&w=majority"
+const mongoose = require('mongoose');
+
+const mongoURL = process.env.MONGO_URI || "mongodb+srv://username:password@cluster.mongodb.net/PetAdoption?retryWrites=true&w=majority";
 
 const connectionParams = {
     useNewUrlParser: true,
@@ -12,8 +12,8 @@ const ConnectToMongo = () => {
         console.info("Connected To Mongo Successfully");
     }).catch((e) => {
         console.log("Error:", e);
+        process.exit(1);
     });
 }
-
 
 module.exports = ConnectToMongo;

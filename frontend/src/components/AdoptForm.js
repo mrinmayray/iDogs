@@ -40,6 +40,7 @@ function AdoptForm() {
     draggable: true,
     theme: "dark",
   };
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(doggender, dogname, dogbreed, dogage, owner, contact, dogpic);
@@ -71,9 +72,9 @@ function AdoptForm() {
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
       const data = new FormData();
       data.append("file", pics);
-      data.append("upload_preset", "chatapp");
-      data.append("cloud_name", "dvfxrdr5m");
-      fetch("https://api.cloudinary.com/v1_1/dvfxrdr5m/image/upload", {
+      data.append("upload_preset", process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET);
+      data.append("cloud_name", process.env.REACT_APP_CLOUDINARY_CLOUD_NAME);
+      fetch(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`, {
         method: "post",
         body: data,
       })
@@ -85,6 +86,7 @@ function AdoptForm() {
         })
         .catch((err) => {
           console.log(err);
+          toast.error("Failed to upload image", toastOption);
         });
     } else {
       toast.warning("Please Select an Image");

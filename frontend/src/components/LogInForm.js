@@ -3,6 +3,7 @@ import "./LogInFormStyles.css";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AuthLoginRoute, AuthSignupRoute } from "../utils/AllRoutes";
 
 const LogInForm = () => {
   const [credentials, setCredentials] = useState({
@@ -24,52 +25,62 @@ const LogInForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Log-in
-    const response = await fetch("https://idogs.onrender.com/api/auth/login", {
-      method: `POST`,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: credentials.email,
-        password: credentials.password,
-      }),
-    });
-    const json = await response.json();
-    console.log(json);
-    if (json.success) {
-      // Save the auth token and update logged-in status
-      localStorage.setItem("token", json.authtoken);
-      setIsLoggedIn(true);
-      navigate("/");
-      toast.success("Logged in Successfully");
-    } else {
-      toast.error("Invalid Credentials");
+    try {
+      const response = await fetch(AuthLoginRoute, {
+        method: `POST`,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: credentials.email,
+          password: credentials.password,
+        }),
+      });
+      const json = await response.json();
+      console.log(json);
+      if (json.success) {
+        // Save the auth token and update logged-in status
+        localStorage.setItem("token", json.authtoken);
+        setIsLoggedIn(true);
+        navigate("/");
+        toast.success("Logged in Successfully");
+      } else {
+        toast.error("Invalid Credentials");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Login failed. Please try again.");
     }
   };
 
   const handleSignup = async (e) => {
     e.preventDefault();
     // Sign-Up
-    const response = await fetch("https://idogs.onrender.com/api/auth/createuser", {
-      method: `POST`,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: credentials.name,
-        email: credentials.email,
-        password: credentials.password,
-      }),
-    });
-    const json = await response.json();
-    console.log(json);
-    if (json.success) {
-      // Save the auth token and update logged-in status
-      localStorage.setItem("token", json.authtoken);
-      setIsLoggedIn(true);
-      toast.success("Account Created Successfully, Please Log-In");
-    } else {
-      toast.error("Signup Failed");
+    try {
+      const response = await fetch(AuthSignupRoute, {
+        method: `POST`,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: credentials.name,
+          email: credentials.email,
+          password: credentials.password,
+        }),
+      });
+      const json = await response.json();
+      console.log(json);
+      if (json.success) {
+        // Save the auth token and update logged-in status
+        localStorage.setItem("token", json.authtoken);
+        setIsLoggedIn(true);
+        toast.success("Account Created Successfully, Please Log-In");
+      } else {
+        toast.error("Signup Failed");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Signup failed. Please try again.");
     }
   };
 

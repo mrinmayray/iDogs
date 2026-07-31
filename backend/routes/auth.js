@@ -6,7 +6,7 @@ const bcrypt = require("bcryptjs");
 var jwt = require('jsonwebtoken');
 const fetchuser = require('../middleware/fetchuser');
 
-const JWT_SECRET = 'ThisIsTheJWTSECRET'; //this is to create the web token
+const JWT_SECRET = process.env.JWT_SECRET || 'your_default_secret_key';
 
 //ROUTE-1 Create a user using POST "/api/auth/createuser"  --No login
 router.post('/createuser', [
@@ -45,10 +45,9 @@ router.post('/createuser', [
         id: user.id
       }
     }
-    const authtoken = jwt.sign(data, JWT_SECRET); //here we are creating a token for our users
+    const authtoken = jwt.sign(data, JWT_SECRET);
     success = true;
     res.json( {success, authtoken} )
-    //res.json(user)
 
     //Show error if something internal error occurs
   } catch (error) {
@@ -56,9 +55,6 @@ router.post('/createuser', [
     res.status(500).send("Some error occured");
   }
 })
-
-
-
 
 //ROUTE-2 Authenticate a user using POST "/api/auth/login" ---No login required 
 router.post('/login', [
@@ -90,7 +86,7 @@ router.post('/login', [
         id: user.id
       }
     }
-    const authtoken = jwt.sign(data, JWT_SECRET); //here we are creating a token for our users
+    const authtoken = jwt.sign(data, JWT_SECRET);
     success = true;
     res.json({success, authtoken})
 
@@ -99,9 +95,6 @@ router.post('/login', [
     res.status(500).send("Internal server error");
   }
 })
-
-
-
 
 //ROUTE 3- Get logged in user details using POST "/api/auth/getuser" --- Login required 
 router.post('/getuser', fetchuser, async (req, res) => {

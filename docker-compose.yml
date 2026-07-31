@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:6
+    container_name: idogs-mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - idogs-network
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: idogs-backend
+    environment:
+      MONGO_URI: mongodb://admin:password@mongodb:27017/PetAdoption?authSource=admin
+      JWT_SECRET: ${JWT_SECRET:-your_super_secret_jwt_key_change_this}
+      PORT: 5000
+      CORS_ORIGIN: http://localhost:3000
+      NODE_ENV: development
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+    volumes:
+      - ./backend:/app/backend
+    networks:
+      - idogs-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: idogs-frontend
+    environment:
+      REACT_APP_API_BASE_URL: http://localhost:5000
+      REACT_APP_CLOUDINARY_CLOUD_NAME: ${REACT_APP_CLOUDINARY_CLOUD_NAME}
+      REACT_APP_CLOUDINARY_UPLOAD_PRESET: ${REACT_APP_CLOUDINARY_UPLOAD_PRESET}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - idogs-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  idogs-network:
+    driver: bridge

@@ -1,5 +1,5 @@
 var jwt = require('jsonwebtoken');
-const JWT_SECRET = 'ThisIsTheJWTSECRET'; //this is to create the web token
+const JWT_SECRET = process.env.JWT_SECRET || 'your_default_secret_key';
 
 const fetchuser = (req, res, next) => {
 
@@ -7,7 +7,7 @@ const fetchuser = (req, res, next) => {
 
     const token = req.header('auth-token');
     if (!token) {
-        res.status(401).send({ error: "Please authenticate using a valid token" })
+        return res.status(401).send({ error: "Please authenticate using a valid token" })
     }
     try {
         const data = jwt.verify(token, JWT_SECRET);
