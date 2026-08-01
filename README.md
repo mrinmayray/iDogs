@@ -1,196 +1,128 @@
-# iDogs - Dog Adoption Platform
+# iDogs - Dog Adoption Platform 🐕
 
-A full-stack web application for listing and adopting dogs. Users can create accounts, browse available dogs for adoption, and add their own dogs for adoption.
+A full-stack web application for listing and adopting dogs with modern UI/UX and automatic deployment.
 
-## Features
+## 🚀 Quick Start
 
-- User authentication (Sign up & Login)
-- Browse available dogs for adoption
-- Add dogs for adoption
-- User profiles
-- Image upload via Cloudinary
-- Responsive design
-
-## Tech Stack
-
-### Frontend
-- React 18
-- React Router v6
-- Axios for HTTP requests
-- Styled Components for styling
-- React Toastify for notifications
-
-### Backend
-- Node.js with Express
-- MongoDB with Mongoose
-- JWT for authentication
-- Bcryptjs for password hashing
-- CORS for cross-origin requests
-
-## Prerequisites
-
-- Node.js (v14 or higher)
-- MongoDB Atlas account
+### Prerequisites
+- Node.js v14+
+- MongoDB Atlas
 - Cloudinary account
-- npm or yarn
 
-## Installation
-
-### 1. Clone the repository
+### Installation
 
 ```bash
+# Clone
 git clone https://github.com/mrinmayray/iDogs.git
 cd iDogs
+
+# Backend setup
+cd backend && cp .env.example .env && npm install
+
+# Frontend setup
+cd ../frontend && cp .env.example .env.local && npm install
 ```
 
-### 2. Setup Backend
+### Environment Variables
 
-```bash
-cd backend
-cp .env.example .env
+**Backend (.env):**
 ```
-
-Update `.env` with your values:
-
-```
-MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/PetAdoption?retryWrites=true&w=majority
-JWT_SECRET=your_super_secret_jwt_key
+MONGO_URI=mongodb+srv://user:pass@cluster.mongodb.net/PetAdoption
+JWT_SECRET=your_secret_key_min_32_chars
 PORT=5000
 CORS_ORIGIN=http://localhost:3000
+NODE_ENV=development
 ```
 
-Install dependencies:
-
-```bash
-npm install
-```
-
-### 3. Setup Frontend
-
-```bash
-cd ../frontend
-cp .env.example .env.local
-```
-
-Update `.env.local` with your values:
-
+**Frontend (.env.local):**
 ```
 REACT_APP_API_BASE_URL=http://localhost:5000
 REACT_APP_CLOUDINARY_CLOUD_NAME=your_cloud_name
-REACT_APP_CLOUDINARY_UPLOAD_PRESET=your_upload_preset
+REACT_APP_CLOUDINARY_UPLOAD_PRESET=your_preset
 ```
 
-Install dependencies:
+### Run Locally
 
+**Terminal 1:**
 ```bash
-npm install
+cd backend && npm run dev
+# Backend: http://localhost:5000
 ```
 
-## Running the Application
-
-### Development Mode
-
-**Terminal 1 - Start Backend:**
-
+**Terminal 2:**
 ```bash
-cd backend
-npm run dev
+cd frontend && npm start
+# Frontend: http://localhost:3000
 ```
 
-Backend runs on `http://localhost:5000`
+## ✨ Features
 
-**Terminal 2 - Start Frontend:**
+✅ Modern Apple-inspired UI  
+✅ Fully responsive (480px - 4K)  
+✅ User authentication with JWT  
+✅ Browse & list dogs for adoption  
+✅ Cloudinary image uploads  
+✅ Automatic testing & deployment  
+✅ Security scanning  
+✅ Environment-based configuration  
 
-```bash
-cd frontend
-npm start
-```
+## 🔒 Security
 
-Frontend runs on `http://localhost:3000`
+- ✅ No hardcoded secrets
+- ✅ Password hashing (bcryptjs)
+- ✅ JWT authentication
+- ✅ CORS protection
+- ✅ Input validation
+- ✅ Automated security audits
 
-### Using Docker
+## 📚 Tech Stack
 
-```bash
-docker-compose up
-```
+**Frontend:** React 18, React Router, Axios, Styled Components  
+**Backend:** Node.js, Express, MongoDB, Mongoose  
+**Authentication:** JWT + bcryptjs  
+**Deployment:** Render, Netlify, Docker  
+**CI/CD:** GitHub Actions  
 
-Access the application at `http://localhost:3000`
+## 🌐 Deployment
 
-## Environment Variables
+**Backend → Render:**
+1. Connect GitHub repo
+2. Add environment variables
+3. Deploy (auto on push to main)
 
-### Backend (.env)
+**Frontend → Netlify:**
+1. Connect GitHub repo
+2. Build: `npm run build`
+3. Publish: `frontend/build`
+4. Deploy (auto on push to main)
 
-| Variable | Description | Example |
-|----------|-------------|----------|
-| `MONGO_URI` | MongoDB connection string | `mongodb+srv://user:pass@cluster.mongodb.net/db` |
-| `JWT_SECRET` | Secret key for JWT tokens | `your_super_secret_key` |
-| `PORT` | Backend server port | `5000` |
-| `CORS_ORIGIN` | Allowed CORS origin | `http://localhost:3000` |
-| `NODE_ENV` | Environment type | `development` |
+## 🤖 GitHub Actions
 
-### Frontend (.env.local)
+Automatic:
+- ✅ Testing on every push
+- ✅ Build verification
+- ✅ Security scanning weekly
+- ✅ Deployment on main merge
 
-| Variable | Description | Example |
-|----------|-------------|----------|
-| `REACT_APP_API_BASE_URL` | Backend API URL | `http://localhost:5000` |
-| `REACT_APP_CLOUDINARY_CLOUD_NAME` | Cloudinary cloud name | `your_cloud_name` |
-| `REACT_APP_CLOUDINARY_UPLOAD_PRESET` | Cloudinary upload preset | `your_preset` |
+Setup: [GITHUB_ACTIONS_SETUP.md](./GITHUB_ACTIONS_SETUP.md)
 
-## API Endpoints
+## 📖 Documentation
 
-### Authentication
-- `POST /api/auth/createuser` - Create new user
-- `POST /api/auth/login` - Login user
-- `POST /api/auth/getuser` - Get user details (requires auth)
+- [Deployment Guide](./DEPLOYMENT.md)
+- [GitHub Actions Setup](./GITHUB_ACTIONS_SETUP.md)
 
-### Adoption
-- `POST /api/adopt/register` - Add dog for adoption
-- `GET /api/adopt/allusers` - Get all available dogs
+## 🔗 Live Demo
 
-## Deployment
+🌍 https://idogs.netlify.app/
 
-### Deploy to Render
-
-1. Push code to GitHub
-2. Create new Web Service on Render
-3. Connect GitHub repository
-4. Set environment variables in Render dashboard
-5. Deploy
-
-### Deploy to Heroku
-
-```bash
-heroku create your-app-name
-heroku config:set MONGO_URI=your_mongo_uri
-heroku config:set JWT_SECRET=your_jwt_secret
-git push heroku main
-```
-
-## Security Best Practices
-
-- ✅ Environment variables for sensitive data
-- ✅ Password hashing with bcryptjs
-- ✅ JWT-based authentication
-- ✅ CORS configured
-- ✅ Input validation with express-validator
-- ✅ Error handling
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License
+## 📝 License
 
 ISC
 
-## Support
+## 💬 Support
 
-For issues and feature requests, please create an issue on GitHub.
+[Report an issue](https://github.com/mrinmayray/iDogs/issues)
 
-## Live Demo
+---
 
-🔗 [iDogs - Dog Adoption Platform](https://idogs.netlify.app/)
+**Made with ❤️ by the iDogs Team**
